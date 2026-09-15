@@ -30,31 +30,31 @@ At the start of every session, before changing any file, run this audit and give
 
 ## Checklist
 
-| # | Area | What to check |
-|---|---|---|
-| 1 | Next.js config | Known CVEs for the installed version; `next.config.*`: export, images/remote domains, redirects, rewrites, headers, `productionBrowserSourceMaps`, `poweredByHeader`; functionality a static site doesn't need |
-| 2 | XSS | `dangerouslySetInnerHTML`, `innerHTML`, `outerHTML`, `document.write`, `eval`, `new Function`, dynamic scripts; data from URL, query, hash or storage reaching a sink. Trace **source → processing → sink** |
-| 3 | Injection | SQL/NoSQL, command (`exec`, `spawn`, `child_process`), template, HTML/CSS/JS/URL/JSON injection, ReDoS, unsafe parsers, dynamic imports |
-| 4 | Input validation | Route/query params, forms, storage, cookies, `postMessage`, API responses: validated, encoded, constrained? |
-| 5 | Redirects and URLs | `window.location`, `router.push/replace`, `redirect`/`next`/`returnUrl` params, `javascript:` and `data:` URLs, attacker-controlled links |
-| 6 | Secrets | Keys, tokens, passwords, private keys, certificates in source, `.env*`, JSON, scripts, docs, comments; sensitive values behind `NEXT_PUBLIC_` |
-| 7 | Git hygiene | `.gitignore` covers `.env*`, `*.pem`, `*.key`, credential files and build output; tracked secrets in history |
-| 8 | Dependencies | `npm audit`, outdated/abandoned/suspicious/unneeded packages, duplicates, `pre/postinstall` scripts, lock file present |
-| 9 | Third-party scripts | Domain, HTTPS, necessity, trust, DOM access, SRI, CSP impact |
-| 10 | CSP | Directives: `script-src`, `style-src`, `img-src`, `font-src`, `connect-src`, `frame-src`, `object-src`, `base-uri`, `form-action`, `frame-ancestors`. Don't recommend `'unsafe-inline'`/`'unsafe-eval'` without a demonstrated need; explain limits of the architecture |
-| 11 | Security headers | CSP, HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`, cache headers, `X-Powered-By`. Say where they are set (Next.js has no effect on a static export: host/CDN config such as `vercel.json`) |
-| 12 | CORS / CSRF / Auth / Cookies | Only if APIs, authenticated state changes, login or cookies exist; otherwise Not Applicable with reason. A form alone is not CSRF |
-| 13 | Browser storage | Tokens, personal or payment data in localStorage, sessionStorage, IndexedDB or cookies |
-| 14 | Uploads / path traversal | Uploads: MIME, size, filename, SVG, storage. Filesystem calls with user input: `../`, `path.join`, `fs.*` |
-| 15 | SVG and static assets | SVGs with scripts, event handlers or external refs; `public/` and `out/` leaking configs, backups, `.map`, test or debug files. Everything in `public/` is public |
-| 16 | External APIs | Endpoint, auth method, key exposure (intentional or accidental), request validation, error handling, rate limits |
-| 17 | Error disclosure | Stack traces, paths, env values, internal URLs or debug output visible to users; console logging of form data |
-| 18 | Build output | Source maps, reconstructable source, secrets in bundles, exposed `.next` or debug files |
-| 19 | SEO / crawler | `robots.txt` and sitemap revealing internal routes (robots.txt is not security) |
-| 20 | Transport | Hardcoded `http://`, mixed content, insecure API, image or script URLs |
-| 21 | Deployment | Host config (Vercel, etc.): HTTPS, headers, caching, env vars, preview protection, build commands, anything less secure than the source |
-| 22 | Resource abuse | Unbounded input, expensive regex, large payloads, heavy client work (DoS/ReDoS) |
-| 23 | TypeScript | `any`, unchecked casts, non-null assertions, validation gaps with security impact |
+| #   | Area                         | What to check                                                                                                                                                                                                                                                           |
+| --- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Next.js config               | Known CVEs for the installed version; `next.config.*`: export, images/remote domains, redirects, rewrites, headers, `productionBrowserSourceMaps`, `poweredByHeader`; functionality a static site doesn't need                                                          |
+| 2   | XSS                          | `dangerouslySetInnerHTML`, `innerHTML`, `outerHTML`, `document.write`, `eval`, `new Function`, dynamic scripts; data from URL, query, hash or storage reaching a sink. Trace **source → processing → sink**                                                             |
+| 3   | Injection                    | SQL/NoSQL, command (`exec`, `spawn`, `child_process`), template, HTML/CSS/JS/URL/JSON injection, ReDoS, unsafe parsers, dynamic imports                                                                                                                                 |
+| 4   | Input validation             | Route/query params, forms, storage, cookies, `postMessage`, API responses: validated, encoded, constrained?                                                                                                                                                             |
+| 5   | Redirects and URLs           | `window.location`, `router.push/replace`, `redirect`/`next`/`returnUrl` params, `javascript:` and `data:` URLs, attacker-controlled links                                                                                                                               |
+| 6   | Secrets                      | Keys, tokens, passwords, private keys, certificates in source, `.env*`, JSON, scripts, docs, comments; sensitive values behind `NEXT_PUBLIC_`                                                                                                                           |
+| 7   | Git hygiene                  | `.gitignore` covers `.env*`, `*.pem`, `*.key`, credential files and build output; tracked secrets in history                                                                                                                                                            |
+| 8   | Dependencies                 | `npm audit`, outdated/abandoned/suspicious/unneeded packages, duplicates, `pre/postinstall` scripts, lock file present                                                                                                                                                  |
+| 9   | Third-party scripts          | Domain, HTTPS, necessity, trust, DOM access, SRI, CSP impact                                                                                                                                                                                                            |
+| 10  | CSP                          | Directives: `script-src`, `style-src`, `img-src`, `font-src`, `connect-src`, `frame-src`, `object-src`, `base-uri`, `form-action`, `frame-ancestors`. Don't recommend `'unsafe-inline'`/`'unsafe-eval'` without a demonstrated need; explain limits of the architecture |
+| 11  | Security headers             | CSP, HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`, cache headers, `X-Powered-By`. Say where they are set (Next.js has no effect on a static export: host/CDN config such as `vercel.json`)                                |
+| 12  | CORS / CSRF / Auth / Cookies | Only if APIs, authenticated state changes, login or cookies exist; otherwise Not Applicable with reason. A form alone is not CSRF                                                                                                                                       |
+| 13  | Browser storage              | Tokens, personal or payment data in localStorage, sessionStorage, IndexedDB or cookies                                                                                                                                                                                  |
+| 14  | Uploads / path traversal     | Uploads: MIME, size, filename, SVG, storage. Filesystem calls with user input: `../`, `path.join`, `fs.*`                                                                                                                                                               |
+| 15  | SVG and static assets        | SVGs with scripts, event handlers or external refs; `public/` and `out/` leaking configs, backups, `.map`, test or debug files. Everything in `public/` is public                                                                                                       |
+| 16  | External APIs                | Endpoint, auth method, key exposure (intentional or accidental), request validation, error handling, rate limits                                                                                                                                                        |
+| 17  | Error disclosure             | Stack traces, paths, env values, internal URLs or debug output visible to users; console logging of form data                                                                                                                                                           |
+| 18  | Build output                 | Source maps, reconstructable source, secrets in bundles, exposed `.next` or debug files                                                                                                                                                                                 |
+| 19  | SEO / crawler                | `robots.txt` and sitemap revealing internal routes (robots.txt is not security)                                                                                                                                                                                         |
+| 20  | Transport                    | Hardcoded `http://`, mixed content, insecure API, image or script URLs                                                                                                                                                                                                  |
+| 21  | Deployment                   | Host config (Vercel, etc.): HTTPS, headers, caching, env vars, preview protection, build commands, anything less secure than the source                                                                                                                                 |
+| 22  | Resource abuse               | Unbounded input, expensive regex, large payloads, heavy client work (DoS/ReDoS)                                                                                                                                                                                         |
+| 23  | TypeScript                   | `any`, unchecked casts, non-null assertions, validation gaps with security impact                                                                                                                                                                                       |
 
 ## Report format
 
@@ -72,6 +72,7 @@ Verification (how to confirm the fix)
 ```
 
 Severity:
+
 - **Critical:** code execution, credential compromise, major data exposure, takeover.
 - **High:** fix before deploying.
 - **Medium:** conditional or limited impact.
