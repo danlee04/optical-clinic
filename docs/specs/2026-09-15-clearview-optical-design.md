@@ -1,7 +1,7 @@
 # Clearview Optical Clinic — Website Design Spec
 
 - **Date:** 2026-09-15
-- **Status:** Approved in brainstorming, pending written-spec review
+- **Status:** Approved
 - **Type:** Portfolio project, production quality
 - **Brand name:** "Clearview Optical Clinic" (placeholder, lives in `src/content/site.ts`)
 
