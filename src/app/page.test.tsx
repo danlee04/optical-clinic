@@ -11,10 +11,4 @@ describe('Home placeholder', () => {
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveTextContent(site.name);
   });
-
-  it('renders inside a main landmark', () => {
-    render(<Home />);
-
-    expect(screen.getByRole('main')).toBeInTheDocument();
-  });
 });

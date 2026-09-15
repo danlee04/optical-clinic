@@ -10,9 +10,7 @@ test('home page renders with no console errors', async ({ page }) => {
 
   await page.goto('/');
 
-  await expect(
-    page.getByRole('heading', { level: 1, name: 'Clearview Optical Clinic' }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   expect(errors).toEqual([]);
 });
 

@@ -1,10 +1,11 @@
+import { Container } from '@/components/layout/container';
 import { site } from '@/content/site';
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center gap-4 px-6">
-      <h1 className="text-4xl font-semibold">{site.name}</h1>
-      <p>Our new website is on the way.</p>
-    </main>
+    <Container className="py-24">
+      <h1 className="text-4xl text-primary sm:text-5xl">{site.name}</h1>
+      <p className="mt-4 text-lg text-muted-foreground">Our new website is on the way.</p>
+    </Container>
   );
 }
