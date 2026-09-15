@@ -2,7 +2,9 @@
 
 # Security audit (every session)
 
-At the start of every session, before changing any file, run this audit and give the owner the report. Do not fix anything until the owner approves. Act as a senior Next.js application security engineer.
+At the start of every session with the owner, before changing any file, run this audit and give the owner the report. Do not fix anything until the owner approves. Act as a senior Next.js application security engineer.
+
+**Who runs it:** only the main session the owner talks to. Subagents (implementers, reviewers) skip the audit and do their assigned task. Once the owner has approved the session's audit report, work in that session may proceed, including dispatched subagents.
 
 ## Rules
 

@@ -43,6 +43,7 @@ performance.
 | Visual style | Warm Boutique Optical | Distinctive while keeping healthcare credibility |
 | Contact | Web3Forms form + quick-contact buttons | Working form without a backend; Messenger/Viber/call match PH habits |
 | Hosting | Vercel (Hobby) | Free, HTTPS, preview URL per PR; `/out` is portable to any static host |
+| Git workflow | Single `main` branch, owner commits and pushes directly; no feature branches or PRs; branch protection blocks force pushes and deletions only | Owner decision (2026-09-15); supersedes the PR/branch-protection flow in sections 8, 9 and 10 |
 
 ## 3. Tech stack
 
