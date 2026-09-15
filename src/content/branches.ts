@@ -1,0 +1,101 @@
+import type { Branch } from '@/lib/types';
+
+const ALL_SERVICES = [
+  'comprehensive-eye-exam',
+  'eyeglasses-and-lenses',
+  'contact-lens-fitting',
+  'pediatric-eye-care',
+  'myopia-management',
+  'dry-eye-assessment',
+  'digital-eye-strain',
+  'eyewear-adjustment-and-repair',
+];
+
+export const branches: Branch[] = [
+  {
+    slug: 'makati',
+    name: 'Clearview Makati',
+    address: 'Unit 2F Almendra Building, 118 Paseo de Roxas, Legazpi Village',
+    city: 'Makati City',
+    phone: '+63280001001',
+    email: 'makati@clearview-optical.example',
+    viber: '+639170000001',
+    coordinates: { lat: 14.5547, lng: 121.0198 },
+    hours: {
+      sun: null,
+      mon: { open: '09:00', close: '19:00' },
+      tue: { open: '09:00', close: '19:00' },
+      wed: { open: '09:00', close: '19:00' },
+      thu: { open: '09:00', close: '19:00' },
+      fri: { open: '09:00', close: '19:00' },
+      sat: { open: '10:00', close: '18:00' },
+    },
+    serviceSlugs: ALL_SERVICES.filter((slug) => slug !== 'pediatric-eye-care'),
+    optometristSlugs: ['maria-santos', 'paolo-reyes'],
+    images: [
+      {
+        src: '/images/placeholders/branch.svg',
+        alt: 'Clearview Makati clinic reception area (placeholder image)',
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
+  {
+    slug: 'quezon-city',
+    name: 'Clearview Quezon City',
+    address: 'Ground Floor, Maginhawa Commons, 45 Maginhawa Street, Teachers Village East',
+    city: 'Quezon City',
+    phone: '+63280001002',
+    email: 'quezoncity@clearview-optical.example',
+    coordinates: { lat: 14.6358, lng: 121.061 },
+    hours: {
+      sun: { open: '10:00', close: '15:00' },
+      mon: { open: '09:00', close: '18:00' },
+      tue: { open: '09:00', close: '18:00' },
+      wed: { open: '09:00', close: '18:00' },
+      thu: { open: '09:00', close: '18:00' },
+      fri: { open: '09:00', close: '18:00' },
+      sat: { open: '09:00', close: '18:00' },
+    },
+    serviceSlugs: ALL_SERVICES.filter((slug) => slug !== 'digital-eye-strain'),
+    optometristSlugs: ['ana-cruz', 'jose-mendoza'],
+    images: [
+      {
+        src: '/images/placeholders/branch.svg',
+        alt: 'Clearview Quezon City clinic storefront (placeholder image)',
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
+  {
+    slug: 'pasig',
+    name: 'Clearview Pasig',
+    address: 'Level 3, Emerald Walk, 21 San Miguel Avenue, Ortigas Center',
+    city: 'Pasig City',
+    phone: '+63280001003',
+    email: 'pasig@clearview-optical.example',
+    viber: '+639170000003',
+    coordinates: { lat: 14.5866, lng: 121.0614 },
+    hours: {
+      sun: { open: '11:00', close: '18:00' },
+      mon: { open: '10:00', close: '20:00' },
+      tue: { open: '10:00', close: '20:00' },
+      wed: { open: '10:00', close: '20:00' },
+      thu: { open: '10:00', close: '20:00' },
+      fri: { open: '10:00', close: '20:00' },
+      sat: { open: '10:00', close: '20:00' },
+    },
+    serviceSlugs: ALL_SERVICES,
+    optometristSlugs: ['paolo-reyes', 'carla-villanueva', 'miguel-tan'],
+    images: [
+      {
+        src: '/images/placeholders/branch.svg',
+        alt: 'Clearview Pasig eyewear display wall (placeholder image)',
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
+];
