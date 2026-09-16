@@ -24,9 +24,38 @@ describe('ServiceGrid', () => {
     expect(screen.getAllByText(/^From ₱/)).toHaveLength(1);
   });
 
-  it('links to the services page', () => {
-    render(<ServiceGrid id="services-heading" title="Our services" services={services} />);
-    expect(screen.getByRole('link', { name: /view all services/i })).toHaveAttribute(
+  it('renders the eyebrow only when given', () => {
+    const { rerender } = render(
+      <ServiceGrid id="services-heading" title="Our services" services={services} />,
+    );
+    expect(screen.queryByText('What we do')).not.toBeInTheDocument();
+
+    rerender(
+      <ServiceGrid
+        id="services-heading"
+        eyebrow="What we do"
+        title="Our services"
+        services={services}
+      />,
+    );
+    expect(screen.getByText('What we do')).toBeInTheDocument();
+  });
+
+  it('renders the footer link only when given', () => {
+    const { rerender } = render(
+      <ServiceGrid id="services-heading" title="Our services" services={services} />,
+    );
+    expect(screen.queryByRole('link', { name: 'View all services' })).not.toBeInTheDocument();
+
+    rerender(
+      <ServiceGrid
+        id="services-heading"
+        title="Our services"
+        services={services}
+        footerLink={{ href: '/services', label: 'View all services' }}
+      />,
+    );
+    expect(screen.getByRole('link', { name: 'View all services' })).toHaveAttribute(
       'href',
       '/services',
     );

@@ -26,9 +26,9 @@ export interface Branch {
   viber?: string;
   coordinates: { lat: number; lng: number };
   hours: WeeklyHours;
-  serviceSlugs: string[];
-  optometristSlugs: string[];
-  images: ImageAsset[];
+  serviceSlugs: readonly string[];
+  optometristSlugs: readonly string[];
+  images: readonly ImageAsset[];
 }
 
 export interface Service {
@@ -52,7 +52,7 @@ export interface Optometrist {
   prcLicenseNo?: string;
   bio: string;
   photo: ImageAsset;
-  branchSlugs: string[];
+  branchSlugs: readonly string[];
 }
 
 export interface Faq {

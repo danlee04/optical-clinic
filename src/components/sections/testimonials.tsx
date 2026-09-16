@@ -23,7 +23,7 @@ function Stars({ rating }: { rating: Testimonial['rating'] }) {
   );
 }
 
-export function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
+export function Testimonials({ testimonials }: { testimonials: readonly Testimonial[] }) {
   const [paused, setPaused] = useState(false);
 
   return (

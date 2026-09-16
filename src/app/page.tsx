@@ -45,6 +45,7 @@ export default function Home() {
           title="Services for every stage of life"
           description="From a child’s first eye check to glasses for long days at the screen."
           services={getFeaturedServices()}
+          footerLink={{ href: '/services', label: 'View all services' }}
         />
       </Reveal>
       <Reveal>
@@ -53,9 +54,11 @@ export default function Home() {
       <Reveal>
         <BranchCards
           id="branches-heading"
+          eyebrow="Visit us"
           title="Find a clinic near you"
           description="Three branches across Metro Manila, open seven days a week between them."
           branches={branches}
+          footerLink={{ href: '/branches', label: 'See all branches' }}
         />
       </Reveal>
       <Reveal>

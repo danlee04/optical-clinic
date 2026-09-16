@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import type { Faq } from '@/lib/types';
 
-export function FaqTeaser({ faqs }: { faqs: Faq[] }) {
+export function FaqTeaser({ faqs }: { faqs: readonly Faq[] }) {
   return (
     <section aria-labelledby="faq-heading" className="py-20">
       <Container className="grid gap-10 md:grid-cols-[1fr_1.5fr]">

@@ -10,14 +10,22 @@ import type { Service } from '@/lib/types';
 const pesos = new Intl.NumberFormat('en-PH');
 
 type ServiceGridProps = {
-  services: Service[];
+  services: readonly Service[];
   id: string;
   eyebrow?: string;
   title: string;
   description?: string;
+  footerLink?: { href: string; label: string };
 };
 
-export function ServiceGrid({ services, id, eyebrow, title, description }: ServiceGridProps) {
+export function ServiceGrid({
+  services,
+  id,
+  eyebrow,
+  title,
+  description,
+  footerLink,
+}: ServiceGridProps) {
   return (
     <section aria-labelledby={id} className="py-20">
       <Container>
@@ -29,7 +37,14 @@ export function ServiceGrid({ services, id, eyebrow, title, description }: Servi
                 <span className="flex size-12 items-center justify-center rounded-full bg-sand text-primary">
                   <Icon name={service.icon} className="size-6" />
                 </span>
-                <h3 className="text-xl text-primary">{service.name}</h3>
+                <h3 className="text-xl text-primary">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="rounded-sm underline-offset-4 outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  >
+                    {service.name}
+                  </Link>
+                </h3>
                 <p className="flex-1 text-muted-foreground">{service.shortDescription}</p>
                 <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
                   <span className="inline-flex items-center gap-1">
@@ -46,14 +61,16 @@ export function ServiceGrid({ services, id, eyebrow, title, description }: Servi
             </li>
           ))}
         </ul>
-        <div className="mt-10">
-          <Button asChild variant="outline">
-            <Link href="/services">
-              View all services
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </Button>
-        </div>
+        {footerLink ? (
+          <div className="mt-10">
+            <Button asChild variant="outline">
+              <Link href={footerLink.href}>
+                {footerLink.label}
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
+        ) : null}
       </Container>
     </section>
   );

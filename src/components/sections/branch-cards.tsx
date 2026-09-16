@@ -8,21 +8,30 @@ import { Button } from '@/components/ui/button';
 import type { Branch } from '@/lib/types';
 
 type BranchCardsProps = {
-  branches: Branch[];
+  branches: readonly Branch[];
   id: string;
+  eyebrow?: string;
   title: string;
   description?: string;
+  footerLink?: { href: string; label: string };
 };
 
 function directionsUrl({ lat, lng }: Branch['coordinates']) {
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
 
-export function BranchCards({ branches, id, title, description }: BranchCardsProps) {
+export function BranchCards({
+  branches,
+  id,
+  eyebrow,
+  title,
+  description,
+  footerLink,
+}: BranchCardsProps) {
   return (
     <section aria-labelledby={id} className="py-20">
       <Container>
-        <SectionHeading id={id} eyebrow="Visit us" title={title} description={description} />
+        <SectionHeading id={id} eyebrow={eyebrow} title={title} description={description} />
         <ul className="mt-10 grid gap-6 md:grid-cols-3">
           {branches.map((branch) => {
             const image = branch.images[0];
@@ -70,14 +79,16 @@ export function BranchCards({ branches, id, title, description }: BranchCardsPro
             );
           })}
         </ul>
-        <div className="mt-10">
-          <Button asChild variant="outline">
-            <Link href="/branches">
-              See all branches
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </Button>
-        </div>
+        {footerLink ? (
+          <div className="mt-10">
+            <Button asChild variant="outline">
+              <Link href={footerLink.href}>
+                {footerLink.label}
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
+        ) : null}
       </Container>
     </section>
   );

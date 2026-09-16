@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { services as serviceContent } from '@/content/services';
 import {
   getBranchBySlug,
   getBranches,
@@ -97,5 +98,21 @@ describe('faqs and testimonials', () => {
 
   it('returns all testimonials', () => {
     expect(getTestimonials()).toHaveLength(8);
+  });
+});
+
+describe('immutability', () => {
+  it('hands out arrays with no in-place mutators', () => {
+    const services = getServices();
+    // @ts-expect-error a readonly array exposes no sort(): the guard is `npm run typecheck`, since
+    // one in-place sort on this shared array would corrupt every other page in the same static export.
+    void services.sort;
+    expect(getServices()).toBe(getServices());
+  });
+
+  it('returns content in the order the content module declares', () => {
+    expect(getServices().map((service) => service.slug)).toEqual(
+      serviceContent.map((service) => service.slug),
+    );
   });
 });
