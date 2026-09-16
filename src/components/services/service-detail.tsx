@@ -65,8 +65,8 @@ export function ServiceDetail({
       <section aria-labelledby="about-heading" className="pb-16">
         <Container className="max-w-3xl">
           <SectionHeading id="about-heading" title={`What to expect`} />
-          {paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-4 text-lg text-muted-foreground">
+          {paragraphs.map((paragraph, index) => (
+            <p key={index} className="mt-4 text-lg text-muted-foreground">
               {paragraph}
             </p>
           ))}

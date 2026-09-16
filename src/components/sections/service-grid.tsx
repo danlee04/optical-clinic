@@ -40,7 +40,7 @@ export function ServiceGrid({
                 <h3 className="text-xl text-primary">
                   <Link
                     href={`/services/${service.slug}`}
-                    className="rounded-sm underline-offset-4 outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     {service.name}
                   </Link>

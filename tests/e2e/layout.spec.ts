@@ -5,6 +5,8 @@ import { waitForEntranceAnimations } from './helpers';
 const ROUTES = [
   '/',
   '/services',
+  '/services/comprehensive-eye-exam',
+  '/services/eyewear-adjustment-and-repair',
   '/branches',
   '/optometrists',
   '/about',

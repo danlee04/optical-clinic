@@ -23,7 +23,7 @@ describe('ServiceDetail', () => {
   it('shows the service image with its alt text', () => {
     render(<ServiceDetail service={service} branches={branches} related={related} />);
     const image = screen.getByRole('img', { name: service.image.alt });
-    expect(image).toHaveAttribute('src', expect.stringContaining('placeholder'));
+    expect(image).toHaveAttribute('src', service.image.src);
   });
 
   it('omits the price row when the service has no starting price', () => {
