@@ -36,7 +36,7 @@ export function NumberTicker({
 
   return (
     <span className={className}>
-      <span ref={ref} aria-hidden="true">
+      <span ref={ref} aria-hidden="true" data-slot="number-ticker-value">
         {finalText}
       </span>
       <span className="sr-only">{finalText}</span>

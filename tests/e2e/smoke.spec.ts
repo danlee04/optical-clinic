@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { waitForEntranceAnimations } from './helpers';
 
 test('home page renders with no console errors', async ({ page }) => {
   const errors: string[] = [];
@@ -16,6 +17,7 @@ test('home page renders with no console errors', async ({ page }) => {
 
 test('home page has no serious or critical accessibility violations', async ({ page }) => {
   await page.goto('/');
+  await waitForEntranceAnimations(page);
 
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
